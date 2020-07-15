@@ -2,6 +2,9 @@ Front End criado para a trabalho da disciplica de Desenvolvimento de aplicaçõe
 
 # front-end-angular-dac
 
-#para rodar o projeto você vai precisar ter: 
+# o projeto necessita de: 
   - Angular 9 
-  
+
+# para rodar:
+  - npm install
+  - ng server
