@@ -1,0 +1,251 @@
+<div class="container">
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary" (click)="onNew()">
+          Cadastrar nova intimação
+        </button>
+      </div>
+      <br>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+
+          <th>Nome</th>
+
+          <th>Data Intimação</th>
+
+          <th>Data Execução</th>
+
+          <th>Endereço</th>
+
+          <th>Estado</th>
+
+          <th>Oficial de justiça</th>
+
+          <th>Processo</th>
+
+          <th>CPF</th>
+
+          <th></th>
+
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let intimacao of intimacao; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+
+          <td>{{ intimacao.nome }}</td>
+
+          <td>{{ intimacao.dataIntimacao }}</td>
+
+          <td>{{ intimacao.dataExecucao }}</td>
+
+          <td>{{ intimacao.adress }}</td>
+
+          <td>{{ intimacao.estado }}</td>
+
+          <td>{{ intimacao.oficialDeJustica }}</td>
+
+          <td>{{ intimacao.processo }}</td>
+
+          <td>{{ intimacao.cpf }}</td>
+
+
+          <td>
+            <button type="button" class="btn btn-info" (click)="onEdit(i)">
+              Editar
+            </button>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-danger" (click)="onDelete(i)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="regentry" *ngIf="showNew">
+    <form (ngSubmit)="onSave()">
+      <div class="form-group row">
+        <label for="nome-input" class="col-2 col-form-label"
+          >Nome</label
+        >
+
+        <div class="col-10">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="regModel.nome"
+            name="nome"
+          />
+        </div>
+      </div>
+
+        <div class="form-group row">
+          <label for="dob-input" class="col-2 col-form-label">Data Execução</label>
+
+          <div class="col-3 input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dob"
+              [(ngModel)]="regModel.dataExecucao"
+              ngbDatepicker
+              #dob="ngbDatepicker"
+            />
+
+            <button
+              class="input-group-addon"
+              (click)="dob.toggle()"
+              type="button"
+            >
+              <img
+                src="assets/img/calendar-icon.svg"
+                style="width: 1.2rem; height: 1rem; cursor: pointer;"
+              />
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="dob-input" class="col-2 col-form-label">Data Intimação</label>
+
+          <div class="col-3 input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dob"
+              [(ngModel)]="regModel.dataIntimacao"
+              ngbDatepicker
+              #dob="ngbDatepicker"
+            />
+
+            <button
+              class="input-group-addon"
+              (click)="dob.toggle()"
+              type="button"
+            >
+              <img
+                src="assets/img/calendar-icon.svg"
+                style="width: 1.2rem; height: 1rem; cursor: pointer;"
+              />
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="endereco-input" class="col-2 col-form-label"
+            >Endereço</label
+          >
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="regModel.adress"
+              name="endereco"
+            />
+          </div>
+        </div>
+
+
+
+        <div class="form-group row">
+          <label for="estado-input" class="col-2 col-form-label"
+            >Estado</label
+          >
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="regModel.estado"
+              name="estado"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="estado-input" class="col-2 col-form-label"
+            >Oficial de Justiça</label
+          >
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="regModel.oficialDeJustica"
+              name="estado"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="estado-input" class="col-2 col-form-label"
+            >Processo</label
+          >
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="regModel.processo"
+              name="estado"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="estado-input" class="col-2 col-form-label"
+            >CPF</label
+          >
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              [(ngModel)]="regModel.cpf"
+              name="estado"
+            />
+          </div>
+        </div>
+
+
+
+      <div class="form-group row">
+        <label for="city-input" class="col-2 col-form-label">Company</label>
+
+        <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="dropdownManual"
+            name="company"
+            ngbDropdownToggle
+          >
+            {{ regModel.estado }}
+          </button>
+
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button
+              type="button"
+              class="dropdown-item"
+              *ngFor="let company of estados"
+              (click)="onChangeCompany(company)"
+            >
+              {{ company }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success">{{ submitType }}</button>
+
+      <button type="submit" class="btn btn-primary" (click)="onCancel()">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <br />
+</div>
