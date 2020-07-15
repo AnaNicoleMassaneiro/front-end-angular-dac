@@ -7,4 +7,4 @@ Front End criado para a trabalho da disciplica de Desenvolvimento de aplicaçõe
 
 # para rodar:
   - npm install
-  - ng server
+  - ng serve
